@@ -8,7 +8,7 @@ const app = express();
 
 const upload = multer({
   limits: {
-    fileSize: 1_000_000
+    fileSize: 3_000_000
   }
 });
 
@@ -19,7 +19,6 @@ const ai = new GoogleGenAI()
 const AI_MODEL = "gemini-3.1-flash-lite";
 
 // inisialisai aplikasi
-app.use(upload.single("file"))// multer upload single file
 app.use(express.json())
 app.use(cosr())
 
@@ -60,7 +59,6 @@ app.post("/api/generate-text", async (req, res) => {
 
 app.post("/api/generate-from-image", upload.single("image"), async (req, res) => {
   const { prompt } = req.body;
-  const base64Image = req.file.buffer.toString("base64");
 
   if (!prompt) {
     return res.status(400).json({
@@ -69,13 +67,22 @@ app.post("/api/generate-from-image", upload.single("image"), async (req, res) =>
     })
   }
 
+  if (!req.file) {
+    return res.status(400).json({
+      success: false,
+      message: "image file is required"
+    })
+  }
+
+  const base64Image = req.file.buffer.toString("base64");
+
   try {
     const response = await ai.interactions.create({
       model: AI_MODEL,
-      contents: [
-        { text: prompt, type: "text" },
-        { inlineData: { data: base64Image, MimeType: req.file.mimetype } },
-      ]
+      input: [
+        { type: "text", text: prompt },
+        { type: "image", data: base64Image, mime_type: req.file.mimetype },
+      ],
     });
 
     return res.status(200).json({
