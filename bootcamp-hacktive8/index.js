@@ -27,6 +27,7 @@ app.get("/api/health", (req, res) => {
   res.send("Hello world")
 })
 
+// generate from text base
 app.post("/api/generate-text", async (req, res) => {
   const { prompt } = req.body;
 
@@ -57,6 +58,7 @@ app.post("/api/generate-text", async (req, res) => {
   }
 });
 
+// generate from image
 app.post("/api/generate-from-image", upload.single("image"), async (req, res) => {
   const { prompt } = req.body;
 
@@ -97,6 +99,43 @@ app.post("/api/generate-from-image", upload.single("image"), async (req, res) =>
       message: error.message
     })
   }
+});
+
+// generate from document
+app.post("/api/generate-from-document", upload.single("document"), async (req, res) => {
+  const { prompt } = req.body;
+  const base64Document = req.file.buffer.toString("base64");
+
+  if (!req.file) {
+    res.status(400).json({
+      message: "document file is required"
+    })
+  }
+
+  try {
+    const response = await ai.models.generateContent({
+      model: AI_MODEL,
+      contents: [{
+        role: "user", parts: [
+          { text: prompt ?? "Tolong ringkaskan dokumen berikut", type: "text" },
+          { inlineData: { data: base64Document, mimeType: req.file.mimetype } }
+        ]
+      }]
+    });
+
+    return res.status(200).json({
+      success: true,
+      result: response.text
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, message: error.message })
+  }
+});
+
+// generate from audio
+app.post("/api/generate-from-audio", async () => {
+  //
 });
 
 // bungkus
