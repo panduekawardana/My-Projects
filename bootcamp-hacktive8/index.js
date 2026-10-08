@@ -134,8 +134,48 @@ app.post("/api/generate-from-document", upload.single("document"), async (req, r
 });
 
 // generate from audio
-app.post("/api/generate-from-audio", async () => {
-  //
+app.post("/api/generate-from-audio", upload.single("audio"), async (req, res) => {
+  const { prompt } = req.body;
+  const base64Audio = req.file.buffer.toString("base64");
+
+  if (!req.file) {
+    return res.status(400).json({
+      success: false,
+      message: "audio file is required"
+    });
+  }
+
+  if (!req.file.mimetype.startsWith("audio/")) {
+    return res.status(400).json({
+      success: false,
+      message: "Invalid type file audio"
+    });
+  }
+
+  try {
+    const response = await ai.models.generateContent({
+      model: AI_MODEL,
+      contents: [
+        {
+          role: "user",
+          parts: [
+            { text: prompt ?? "Desribe this audio", type: "text" },
+            { inlineData: { data: base64Audio, mimeType: req.file.mimetype }}
+          ]
+        }
+      ]
+    });
+
+    return res.status(200).json({
+      success: true,
+      message: response.text
+    });
+  } catch (e) {
+    return res.status(500).json({
+      success: false,
+      message: `Internal server error, ${e.message}`
+    })
+  }
 });
 
 // bungkus
