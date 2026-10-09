@@ -22,6 +22,8 @@ const AI_MODEL = "gemini-3.1-flash-lite";
 app.use(express.json())
 app.use(cosr())
 
+app.use(express.static("static"))
+
 // inisialisai route & handler
 app.get("/api/health", (req, res) => {
   res.send("Hello world")
@@ -175,6 +177,36 @@ app.post("/api/generate-from-audio", upload.single("audio"), async (req, res) =>
       success: false,
       message: `Internal server error, ${e.message}`
     })
+  }
+});
+
+// API CHAT
+app.post("/api/chat", async (req, res) => {
+  const { prompt } = req.body;
+
+  if (!prompt) {
+    return res.status(400).json({
+      success: false,
+      message: "Wah, promptnya harus diisi dulu nih!"
+    })
+  }
+
+  try {
+    const response = await ai.interactions.create({
+      model: AI_MODEL,
+      input: prompt,
+    });
+
+    return res.status(200).json({
+      success: true,
+      message: response.output_text
+    })
+  } catch (error) {
+    console.log(error)
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error"
+    });
   }
 });
 
