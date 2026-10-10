@@ -1,187 +1,28 @@
-# Gemini AI API Project
+# My Projects Repository
 
-Proyek chat-asisten berbasis **Google Gemini AI** dengan fitur rekomendasi produk. Project ini terdiri dari **backend
-** (Node.js + Express) dan **frontend** (React + Vite + Tailwind CSS).
+Repository ini digunakan sebagai tempat penyimpanan, dokumentasi, dan pengembangan berbagai project pribadi yang saya kerjakan dalam proses belajar.
 
-## Fitur
+## Tujuan Repository
 
-- Chat asisten AI menggunakan Google Gemini
-- Rekomendasi produk berdasarkan konteks chat
-- Fallback otomatis ke beberapa model Gemini
-- Rate limiting pada API
-- Antarmuka responsif dengan Tailwind CSS
+- Menyimpan source code dari berbagai project yang telah dibuat.
+- Mendokumentasikan proses pengembangan, konfigurasi, dan cara penggunaan setiap project.
+- Membangun portofolio sebagai Full-Stack Web Developer.
+- Mencatat perkembangan kemampuan dan eksplorasi teknologi baru.
 
-## Screenshot
-<img width="948" height="496" alt="Screenshot 2026-10-10 205027" src="https://github.com/user-attachments/assets/cc58e170-ac3b-4c3f-80c3-190304664789" />
-<img width="960" height="500" alt="Screenshot 2026-10-10 204313" src="https://github.com/user-attachments/assets/e5f289a4-ddd0-4e33-9228-5979f974c01e" />
-<img width="948" height="496" alt="Screenshot 2026-10-10 211501" src="https://github.com/user-attachments/assets/868fc068-468b-4c36-bec2-0288946f9aba" />
+## Teknologi
 
-> hasil response chat:
-> Halo! Saya Nusa dari Toko Nusantara. Terima kasih telah menghubungi kami.
+Project yang disimpan dalam repository ini dapat menggunakan berbagai teknologi, antara lain:
 
-Berikut adalah informasi mengenai opsi dan estimasi pengiriman di Toko Nusantara:
+- **Frontend:** HTML, CSS, JavaScript, TypeScript, React, Next.js, Tailwind CSS.
+- **Backend:** Node.js, Express.js, Laravel.
+- **Database:** PostgreSQL, MySQL,.
+- **Tools:** Git, GitHub, Docker, dan berbagai tools pendukung pengembangan software.
 
-* **Opsi Kurir:** Kami melayani pengiriman ke seluruh wilayah Indonesia melalui kurir rekanan kami, yaitu **JNE, J&T,
-  SiCepat, dan Anteraja**.
-* **Waktu Pemrosesan:** Pesanan Anda akan diproses maksimal 1x24 jam pada hari kerja setelah pembayaran dikonfirmasi.
-* **Estimasi Pengiriman:**
-    * **Pulau Jawa:** 1 - 3 hari kerja.
-    * **Luar Pulau Jawa:** 3 - 7 hari kerja.
-* **Informasi Tambahan:**
-    * Ongkos kirim dihitung otomatis berdasarkan berat produk dan alamat tujuan.
-    * Nikmati **gratis ongkir** untuk pembelian minimal **Rp 500.000** di area tertentu.
-    * Nomor resi pengiriman akan dikirimkan melalui email dan WhatsApp setelah paket diserahkan ke pihak kurir.
+## Dokumentasi
 
-Jika ada hal lain atau produk tertentu yang ingin ditanyakan, silakan beri tahu Nusa ya!.
+Setiap project diharapkan memiliki dokumentasi yang menjelaskan tujuan, teknologi yang digunakan, cara instalasi, konfigurasi environment, cara menjalankan aplikasi, dan fitur utama.
 
-## Struktur Project
+---
 
-```
-gemini-ai-api-project/
-├── backend/          # API server (Node.js + Express)
-├── frontend/         # UI (React + Vite)
-└── README.md
-```
-
-## Prasyarat
-
-- [Node.js](https://nodejs.org/) versi 18 ke atas
-- [Google AI API Key](https://aistudio.google.com/apikey)
-- npm (biasanya sudah termasuk di Node.js)
-
-## Cara Clone Repository
-
-```bash
-git clone <url-repository>
-cd gemini-ai-api-project
-```
-
-## Instalasi Package
-
-### 1. Backend
-
-```bash
-cd backend
-npm install
-```
-
-Dependencies yang diinstal:
-
-| Package              | Keterangan                                 |
-|----------------------|--------------------------------------------|
-| `@google/genai`      | SDK resmi Google Gemini AI                 |
-| `express`            | Framework web untuk API server             |
-| `cors`               | Mengizinkan request lintas origin          |
-| `dotenv`             | Load variabel environment dari file `.env` |
-| `express-rate-limit` | Pembatasan jumlah request API              |
-| `multer`             | Middleware untuk upload file               |
-| `nodemon`            | Auto-restart server saat ada perubahan     |
-
-#### Konfigurasi `.env`
-
-Salin file `.env.example` (atau buat file baru bernama `.env`) di dalam folder `backend`:
-
-```bash
-cd backend
-cp .env.example .env
-```
-
-Isi file `.env` sebagai berikut:
-
-```env
-GOOGLE_AI_MODEL="gemini-3.6-flash"
-GOOGLE_AI_MODEL_FALLBACKS="gemini-3.5-flash,gemini-flash-latest,gemini-3.1-flash-lite"
-GOOGLE_AI_API_KEY=<TEMPATKAN_API_KEY_ANDA>
-PORT=3000
-CONTEXT_PRODUCT_LIMIT=8
-AI_MAX_ATTEMPTS_PER_MODEL=2
-```
-
-#### Jalankan Backend
-
-```bash
-cd backend
-npm run dev
-```
-
-Server berjalan di `http://localhost:3000`.
-
-### 2. Frontend
-
-```bash
-cd frontend
-npm install
-```
-
-Dependencies yang diinstal:
-
-| Package             | Keterangan                              |
-|---------------------|-----------------------------------------|
-| `react`             | Library UI utama                        |
-| `react-dom`         | Render React ke DOM                     |
-| `react-markdown`    | Render output AI dalam format markdown  |
-| `lucide-react`      | Kumpulan ikon SVG                       |
-| `tailwindcss`       | Framework CSS utility-first             |
-| `@tailwindcss/vite` | Plugin Tailwind untuk Vite              |
-| `vite`              | Build tool / dev server (devDependency) |
-| `eslint` & plugins  | Linter kode (devDependency)             |
-
-#### Jalankan Frontend
-
-```bash
-cd frontend
-npm run dev
-```
-
-Frontend berjalan di `http://localhost:5173` dan sudah terproksi ke backend di `http://localhost:3000` (port backend
-tidak perlu diubah).
-
-## Menjalankan Kedua Server
-
-Buka **dua terminal** terpisah:
-
-| Terminal | Perintah                   | URL                   |
-|----------|----------------------------|-----------------------|
-| 1        | `cd backend; npm run dev`  | http://localhost:3000 |
-| 2        | `cd frontend; npm run dev` | http://localhost:5173 |
-
-## Script yang Tersedia
-
-### Backend
-
-| Script        | Deskripsi                         |
-|---------------|-----------------------------------|
-| `npm run dev` | Menjalankan server dengan nodemon |
-
-### Frontend
-
-| Script            | Deskripsi                    |
-|-------------------|------------------------------|
-| `npm run dev`     | Menjalankan dev server Vite  |
-| `npm run build`   | Build untuk produksi         |
-| `npm run lint`    | Menjalankan ESLint           |
-| `npm run preview` | Preview hasil build produksi |
-
-## Endpoint API
-
-| Method | Endpoint    | Deskripsi                                   |
-|--------|-------------|---------------------------------------------|
-| GET    | `/`         | Cek kesehatan server                        |
-| POST   | `/api/chat` | Kirim prompt chat, balas rekomendasi produk |
-
-Contoh request:
-
-```json
-{
-  "prompt": [
-    {
-      "role": "user",
-      "text": "Rekomendasikan laptop untuk editing video"
-    }
-  ]
-}
-```
-
-## Lisensi
-
-Project ini menggunakan lisensi **ISC**.
+**Maintained by:** Me  
+**Purpose:** Personal Projects, Learning, and Software Development Portfolio
