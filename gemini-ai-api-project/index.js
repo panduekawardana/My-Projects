@@ -1,43 +1,43 @@
-import { GoogleGenAI } from "@google/genai";
-import "dotenv/config";
-import express from "express";
-import cosr from "cors";
-import multer from "multer";
+import { GoogleGenAI } from '@google/genai';
+import 'dotenv/config';
+import express from 'express';
+import cosr from 'cors';
+import multer from 'multer';
 
 const app = express();
 
 const upload = multer({
   limits: {
-    fileSize: 3_000_000
-  }
+    fileSize: 3_000_000,
+  },
 });
 
 const PORT = 3000;
 
-const ai = new GoogleGenAI()
+const ai = new GoogleGenAI();
 
-const AI_MODEL = "gemini-3.1-flash-lite";
+const AI_MODEL = 'gemini-3.1-flash-lite';
 
 // inisialisai aplikasi
-app.use(express.json())
-app.use(cosr())
+app.use(express.json());
+app.use(cosr());
 
-app.use(express.static("static"))
+app.use(express.static('static'));
 
 // inisialisai route & handler
-app.get("/api/health", (req, res) => {
-  res.send("Hello world")
-})
+app.get('/api/health', (req, res) => {
+  res.send('Hello world');
+});
 
 // generate from text base
-app.post("/api/generate-text", async (req, res) => {
+app.post('/api/generate-text', async (req, res) => {
   const { prompt } = req.body;
 
   if (!prompt) {
     return res.status(400).json({
       success: false,
-      message: "prompt is required"
-    })
+      message: 'prompt is required',
+    });
   }
 
   try {
@@ -48,109 +48,120 @@ app.post("/api/generate-text", async (req, res) => {
 
     return res.status(200).json({
       success: true,
-      message: response.output_text
-    })
-
+      message: response.output_text,
+    });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return res.status(500).json({
       success: false,
-      message: "Internal server error"
-    })
+      message: 'Internal server error',
+    });
   }
 });
 
 // generate from image
-app.post("/api/generate-from-image", upload.single("image"), async (req, res) => {
-  const { prompt } = req.body;
+app.post ('/api/generate-from-image', upload.single('image'), async (req, res) => {
+    const { prompt } = req.body;
 
-  if (!prompt) {
-    return res.status(400).json({
-      success: false,
-      message: "prompt is required"
-    })
-  }
+    if (!prompt) {
+      return res.status(400).json({
+        success: false,
+        message: 'prompt is required',
+      });
+    }
 
-  if (!req.file) {
-    return res.status(400).json({
-      success: false,
-      message: "image file is required"
-    })
-  }
+    if (!req.file) {
+      return res.status(400).json({
+        success: false,
+        message: 'image file is required',
+      });
+    }
 
-  const base64Image = req.file.buffer.toString("base64");
+    const base64Image = req.file.buffer.toString('base64');
 
-  try {
-    const response = await ai.interactions.create({
-      model: AI_MODEL,
-      input: [
-        { type: "text", text: prompt },
-        { type: "image", data: base64Image, mime_type: req.file.mimetype },
-      ],
-    });
+    try {
+      const response = await ai.interactions.create({
+        model: AI_MODEL,
+        input: [
+          { type: 'text', text: prompt },
+          { type: 'image', data: base64Image, mime_type: req.file.mimetype },
+        ],
+      });
 
-    return res.status(200).json({
-      success: true,
-      message: response.output_text
-    })
-
-  } catch (error) {
-    console.log(error)
-    return res.status(500).json({
-      success: false,
-      message: error.message
-    })
-  }
-});
+      return res.status(200).json({
+        success: true,
+        message: response.output_text,
+      });
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({
+        success: false,
+        message: error.message,
+      });
+    }
+  },
+);
 
 // generate from document
-app.post("/api/generate-from-document", upload.single("document"), async (req, res) => {
-  const { prompt } = req.body;
-  const base64Document = req.file.buffer.toString("base64");
+app.post('/api/generate-from-document', upload.single('document'), async (req, res) => {
+    const { prompt } = req.body;
+    const base64Document = req.file.buffer.toString('base64');
 
-  if (!req.file) {
-    res.status(400).json({
-      message: "document file is required"
-    })
-  }
+    if (!req.file) {
+      res.status(400).json({
+        message: 'document file is required',
+      });
+    }
 
-  try {
-    const response = await ai.models.generateContent({
-      model: AI_MODEL,
-      contents: [{
-        role: "user", parts: [
-          { text: prompt ?? "Tolong ringkaskan dokumen berikut", type: "text" },
-          { inlineData: { data: base64Document, mimeType: req.file.mimetype } }
-        ]
-      }]
-    });
+    try {
+      const response = await ai.models.generateContent({
+        model: AI_MODEL,
+        contents: [
+          {
+            role: 'user',
+            parts: [
+              {
+                text: prompt ?? 'Tolong ringkaskan dokumen berikut',
+                type: 'text',
+              },
+              {
+                inlineData: {
+                  data: base64Document,
+                  mimeType: req.file.mimetype,
+                },
+              },
+            ],
+          },
+        ],
+      });
 
-    return res.status(200).json({
-      success: true,
-      result: response.text
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ success: false, message: error.message })
-  }
-});
+      return res.status(200).json({
+        success: true,
+        result: response.text,
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ success: false, message: error.message });
+    }
+  },
+);
 
 // generate from audio
-app.post("/api/generate-from-audio", upload.single("audio"), async (req, res) => {
+app.post('/api/generate-from-audio',upload.single('audio'), async (req, res) => {
   const { prompt } = req.body;
-  const base64Audio = req.file.buffer.toString("base64");
+  const base64Audio = req.file.buffer.toString('base64');
 
   if (!req.file) {
     return res.status(400).json({
       success: false,
-      message: "audio file is required"
+      message: 'audio file is required',
     });
   }
 
-  if (!req.file.mimetype.startsWith("audio/")) {
+  if (!req.file.mimetype.startsWith('audio/')) {
     return res.status(400).json({
       success: false,
-      message: "Invalid type file audio"
+      message: 'Invalid type file audio',
     });
   }
 
@@ -159,58 +170,73 @@ app.post("/api/generate-from-audio", upload.single("audio"), async (req, res) =>
       model: AI_MODEL,
       contents: [
         {
-          role: "user",
+          role: 'user',
           parts: [
-            { text: prompt ?? "Desribe this audio", type: "text" },
-            { inlineData: { data: base64Audio, mimeType: req.file.mimetype }}
-          ]
-        }
-      ]
+            { text: prompt ?? 'Desribe this audio', type: 'text' },
+            {
+              inlineData: { data: base64Audio, mimeType: req.file.mimetype },
+            },
+          ],
+        },
+      ],
     });
 
     return res.status(200).json({
       success: true,
-      message: response.text
+      message: response.text,
     });
   } catch (e) {
     return res.status(500).json({
       success: false,
-      message: `Internal server error, ${e.message}`
-    })
+      message: `Internal server error, ${e.message}`,
+    });
   }
 });
 
 // API CHAT
-app.post("/api/chat", async (req, res) => {
-  const { prompt } = req.body;
+app.post('/api/chat', async (req, res) => {
+  const { conversation } = req.body;
 
-  if (!prompt) {
+  if (!conversation) {
     return res.status(400).json({
       success: false,
-      message: "Wah, promptnya harus diisi dulu nih!"
-    })
+      message: 'Wah, prompt harus diisi dulu nih!',
+    });
   }
 
   try {
-    const response = await ai.interactions.create({
+    if (!Array.isArray(conversation))
+      throw new Error('Message harus berupa array');
+
+    const contents = conversation.map(({ role, text }) => ({
+      role,
+      parts: [{ text }],
+    }));
+
+    const response = await ai.models.generateContent({
       model: AI_MODEL,
-      input: prompt,
+      contents: contents,
+      config: {
+        temperature: 0.9,
+        systemInstruction: 'Jawab hanya menggunakan bahasa Indonesia',
+      },
     });
 
     return res.status(200).json({
       success: true,
-      message: response.output_text
-    })
+      result: response.text,
+      message: response.text,
+    });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return res.status(500).json({
       success: false,
-      message: "Internal server error"
+      message: 'Internal server error',
     });
   }
 });
 
 // bungkus
 app.listen(PORT, () => {
-  console.log("Bungkus gan di", `http://localhost:${PORT}`)
-})
+  console.log('Bungkus gan di', `http://localhost:${PORT}`);
+});
