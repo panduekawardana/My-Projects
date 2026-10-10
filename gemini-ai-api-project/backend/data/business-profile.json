@@ -1,0 +1,60 @@
+{
+  "name": "Toko Nusantara",
+  "legalName": "PT Toko Nusantara Digital",
+  "tagline": "Belanja Lengkap, Harga Bersahabat",
+  "description": "Toko Nusantara adalah toko retail online yang menjual berbagai kebutuhan sehari-hari, mulai dari elektronik, komputer, audio, pakaian, peralatan rumah tangga, alat kesehatan, mainan, hingga perlengkapan hewan. Kami menghadirkan ratusan produk pilihan dari brand terpercaya dengan harga kompetitif dan pengiriman ke seluruh Indonesia.",
+  "foundedYear": 2020,
+  "address": "Jl. Merdeka No. 123, Kel. Sukamaju, Kec. Cilandak",
+  "city": "Jakarta Selatan",
+  "province": "DKI Jakarta",
+  "postalCode": "12430",
+  "country": "Indonesia",
+  "operatingHours": {
+    "mondayToFriday": "08.00 - 20.00 WIB",
+    "saturday": "09.00 - 18.00 WIB",
+    "sunday": "10.00 - 16.00 WIB",
+    "publicHoliday": "Tutup (layanan chat tetap aktif)"
+  },
+  "contact": {
+    "phone": "021-1234-5678",
+    "whatsapp": "0812-3456-7890",
+    "email": "cs@tokonusantara.id",
+    "website": "https://www.tokonusantara.id"
+  },
+  "socialMedia": {
+    "instagram": "@tokonusantara.id",
+    "facebook": "Toko Nusantara",
+    "tiktok": "@tokonusantara"
+  },
+  "highlights": [
+    "Lebih dari 100 produk pilihan dari 5 brand lokal terpercaya.",
+    "Pengiriman ke seluruh Indonesia dengan pilihan kurir.",
+    "Pembayaran aman: transfer bank, e-wallet, dan COD (area tertentu).",
+    "Garansi resmi dan retur mudah hingga 7 hari.",
+    "Layanan pelanggan responsif melalui chat, WhatsApp, dan email."
+  ],
+  "categoriesOffered": [
+    "Elektronik",
+    "Komputer",
+    "Audio",
+    "Aksesoris Gadget",
+    "Pakaian",
+    "Alas Kaki",
+    "Tas",
+    "Perlengkapan Rumah",
+    "Peralatan Dapur",
+    "Alat Kesehatan",
+    "Perawatan Tubuh",
+    "Mainan",
+    "Perlengkapan Hewan",
+    "Peralatan Olahraga",
+    "Peralatan Kendaraan"
+  ],
+  "brands": [
+    "Nusa",
+    "Arunika",
+    "Lombok Goods",
+    "Prima",
+    "Sentra"
+  ]
+}

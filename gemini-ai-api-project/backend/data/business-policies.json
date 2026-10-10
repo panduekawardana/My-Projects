@@ -1,0 +1,59 @@
+{
+  "lastUpdated": "2026-01-01",
+  "sections": [
+    {
+      "key": "pengiriman",
+      "title": "Pengiriman",
+      "items": [
+        "Pesanan diproses maksimal 1x24 jam pada hari kerja setelah pembayaran dikonfirmasi.",
+        "Pengiriman tersedia ke seluruh wilayah Indonesia melalui kurir rekanan (JNE, J&T, SiCepat, dan Anteraja).",
+        "Estimasi pengiriman dalam Pulau Jawa 1-3 hari kerja, luar Pulau Jawa 3-7 hari kerja.",
+        "Ongkos kirim dihitung otomatis berdasarkan berat produk (gram) dan alamat tujuan.",
+        "Gratis ongkir untuk pembelian minimal Rp 500.000 di area tertentu.",
+        "Nomor resi akan dikirim melalui email dan WhatsApp setelah paket diserahkan ke kurir."
+      ]
+    },
+    {
+      "key": "pembayaran",
+      "title": "Pembayaran",
+      "items": [
+        "Metode pembayaran yang tersedia: transfer bank (BCA, Mandiri, BNI, BRI), e-wallet (GoPay, OVO, DANA, ShopeePay), QRIS, dan kartu kredit.",
+        "COD (bayar di tempat) tersedia untuk area Jabodetabek dengan maksimal nilai transaksi Rp 2.000.000.",
+        "Pesanan akan diproses setelah pembayaran terverifikasi.",
+        "Kami tidak pernah meminta data kartu atau PIN melalui chat. Waspadai penipuan."
+      ]
+    },
+    {
+      "key": "retur",
+      "title": "Retur & Refund",
+      "items": [
+        "Pengajuan retur dapat dilakukan maksimal 7 hari setelah paket diterima.",
+        "Produk yang diretur harus dalam kondisi baru, tidak dipakai, label dan kemasan masih lengkap.",
+        "Retur berlaku untuk produk cacat produksi, salah kirim, atau tidak sesuai deskripsi.",
+        "Biaya pengiriman retur ditanggung penjual apabila kesalahan dari pihak kami.",
+        "Dana refund diproses maksimal 7 hari kerja setelah produk retur kami terima dan verifikasi.",
+        "Produk kategori tertentu seperti makanan, minuman, dan produk kebersihan diri tidak dapat diretur kecuali cacat produksi."
+      ]
+    },
+    {
+      "key": "garansi",
+      "title": "Garansi",
+      "items": [
+        "Produk elektronik dan komputer bergaransi resmi sesuai ketentuan brand (umumnya 3-12 bulan).",
+        "Garansi tidak berlaku untuk kerusakan akibat kesalahan pemakaian, air, atau modifikasi sendiri.",
+        "Klaim garansi memerlukan bukti pembelian (invoice) dan kartu garansi bila ada.",
+        "Proses klaim garansi memakan waktu 7-14 hari kerja tergantung kebijakan brand terkait."
+      ]
+    },
+    {
+      "key": "kontak",
+      "title": "Layanan Pelanggan",
+      "items": [
+        "Chat online: setiap hari, 08.00 - 20.00 WIB.",
+        "WhatsApp: 0812-3456-7890 (balasan rata-rata di bawah 15 menit pada jam kerja).",
+        "Email: cs@tokonusantara.id (dibalas maksimal 1x24 jam kerja).",
+        "Untuk keluhan atau komplain, sertakan nomor pesanan dan foto produk bila ada."
+      ]
+    }
+  ]
+}
