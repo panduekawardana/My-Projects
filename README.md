@@ -12,11 +12,9 @@ Proyek chat-asisten berbasis **Google Gemini AI** dengan fitur rekomendasi produ
 - Antarmuka responsif dengan Tailwind CSS
 
 ## Screenshot
-
-![Desain landing page sederhana simulasi customer chat bot ](/images/3.png)
-![Desain landing page sederhana simulasi customer chat bot ](/images/1.png)
-![Desain landing page sederhana simulasi customer chat bot ](/images/2.png)
-![Desain landing page sederhana simulasi customer chat bot ](/images/4.png)
+<img width="948" height="496" alt="Screenshot 2026-10-10 205027" src="https://github.com/user-attachments/assets/cc58e170-ac3b-4c3f-80c3-190304664789" />
+<img width="960" height="500" alt="Screenshot 2026-10-10 204313" src="https://github.com/user-attachments/assets/e5f289a4-ddd0-4e33-9228-5979f974c01e" />
+<img width="948" height="496" alt="Screenshot 2026-10-10 211501" src="https://github.com/user-attachments/assets/868fc068-468b-4c36-bec2-0288946f9aba" />
 
 > hasil response chat:
 > Halo! Saya Nusa dari Toko Nusantara. Terima kasih telah menghubungi kami.
