@@ -1,0 +1,4 @@
+node_modules
+prompt
+package-lock.json
+.env
